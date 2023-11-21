@@ -9,10 +9,14 @@ body {
   background: #b8b6b6;
 }
 .mainMessageBody {
-  padding: 2rem;
   height: 75vh;
   border: 1px solid;
   border-radius: 0.6rem;
+  display: flex;
+  flex-direction: column;
+  overflow-x: auto;
+  padding: 2rem;
+  position: relative;
 }
 
 .inputs {
@@ -21,7 +25,6 @@ body {
   margin-top: 1rem;
 }
 .inputs input[type="text"] {
-  width: 75vh;
   padding: 1rem;
   border-radius: 0.7rem;
   font-weight: bold;
@@ -41,29 +44,33 @@ body {
   color: white;
 }
 
-.mainMessageBody .viewer,
-.sender {
-  position: relative;
-  padding: 0.4rem;
-  color: rgb(255, 255, 255);
-}
+
 
 .viewerMessage {
-  border: 1px solid;
-  background: rgba(20, 152, 204, 0.507);
-  width: 20rem !important;
-  float: left;
   border-radius: 0.7rem;
-  padding: .7rem
-
+  border: 1px solid;
+  height: auto;
+  background: rgba(172, 219, 241, 0.363);
+  padding: 0.6rem;
+  margin: 0.5rem 0;
+  width: 75%;
+  overflow-wrap: break-word;
 }
 .senderMessage {
   border-radius: 0.7rem;
-  float: right;
   border: 1px solid;
-  width: 20rem !important;
-  height: auto;
   background: rgba(204, 0, 255, 0.363);
-  padding: .6rem;
+  padding: 0.6rem;
   text-align: right;
+  margin: 0.5rem 0;
+  width: 75%;
+  justify-items: end;
+  position: relative;
+  left:15%;
+  margin-left: 2rem;
+  overflow-wrap: break-word;
+}
+
+.profileInfo {
+  text-align: center;
 }
