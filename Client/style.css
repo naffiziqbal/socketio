@@ -14,9 +14,9 @@ body {
   border-radius: 0.6rem;
   display: flex;
   flex-direction: column;
-  overflow-x: auto;
   padding: 2rem;
   position: relative;
+  overflow-y: auto;
 }
 
 .inputs {
@@ -54,7 +54,8 @@ body {
   padding: 0.6rem;
   margin: 0.5rem 0;
   width: 75%;
-  overflow-wrap: break-word;
+  /* overflow-wrap: break-word; */
+  /* overflow-y: auto; */
 }
 .senderMessage {
   border-radius: 0.7rem;
@@ -69,6 +70,8 @@ body {
   left:15%;
   margin-left: 2rem;
   overflow-wrap: break-word;
+  overflow-y: auto;
+
 }
 
 .profileInfo {

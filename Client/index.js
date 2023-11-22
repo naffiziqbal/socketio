@@ -1,44 +1,46 @@
 import { io } from "socket.io-client";
 
-// const senderContent = document.querySelector(".senderMessage");
-const viewerContent = document.querySelector(".viewerMessage");
+const mainContent = document.querySelector(".mainMessageBody");
 const form = document.getElementById("form");
 const roomInput = document.getElementById("roomInput");
 
-// senderContent.textContent = "Hello";
+//?  URL
+const production = "https://chat-app-n7go.onrender.com/";
+const local = "http://localhost:3000";
 
-const socket = io("https://chat-app-n7go.onrender.com/");
+//? Connecting Socket With Backend
+const socket = io(local);
+
+//? Connected Socket Profile Info
 socket.on("connect", () => {
   displayProfileInfo(`Youre Connected with id : ${socket.id}`);
 });
 
+//? Recive Message
 socket.on("reciveMessage", (message) => {
   displayViewerMessage(message);
 });
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let message = form.message.value;
-  const room = roomInput.value;
-
-  if (message === "") return;
-  displaySenderMessage(message);
-  socket.emit("sendMessage", message,room);
-  form.message.value = "";
-});
-
 const displaySenderMessage = (message) => {
+  const container = document.getElementById("sender-message");
   const div = document.createElement("div");
   div.textContent = message;
-  document.querySelector(".mainMessageBody").append(div);
+  container.appendChild(div);
   div.classList.add("senderMessage");
+
+  // Scroll Down To Last Item
+  mainContent.scrollTop = mainContent.scrollHeight;
 };
 
 const displayViewerMessage = (message) => {
-  const div = document.createElement("div");
-  div.textContent = message;
-  document.querySelector(".mainMessageBody").append(div);
-  div.classList.add("viewerMessage");
+  const container = document.getElementById("viewer-message");
+  var newItem = document.createElement("div");
+  newItem.textContent = message;
+  container.appendChild(newItem);
+  newItem.classList.add("viewerMessage");
+
+  // Scroll Down To Last Item
+  mainContent.scrollTop = mainContent.scrollHeight;
 };
 
 const displayProfileInfo = (info) => {
@@ -46,3 +48,16 @@ const displayProfileInfo = (info) => {
   div.textContent = info;
   document.querySelector(".profileInfo").append(div);
 };
+
+//?  Submit Message
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  let message = form.message.value;
+  const room = roomInput.value;
+
+  if (room === "") return;
+  displaySenderMessage(message);
+  socket.emit("sendMessage", message, room);
+
+  form.message.value = "";
+});
