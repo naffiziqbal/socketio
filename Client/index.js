@@ -22,10 +22,9 @@ socket.on("reciveMessage", (message) => {
 });
 
 const displaySenderMessage = (message) => {
-  const container = document.getElementById("sender-message");
   const div = document.createElement("div");
   div.textContent = message;
-  container.appendChild(div);
+  mainContent.appendChild(div);
   div.classList.add("senderMessage");
 
   // Scroll Down To Last Item
@@ -33,10 +32,9 @@ const displaySenderMessage = (message) => {
 };
 
 const displayViewerMessage = (message) => {
-  const container = document.getElementById("viewer-message");
   var newItem = document.createElement("div");
   newItem.textContent = message;
-  container.appendChild(newItem);
+  mainContent.appendChild(newItem);
   newItem.classList.add("viewerMessage");
 
   // Scroll Down To Last Item
@@ -55,7 +53,7 @@ form.addEventListener("submit", (e) => {
   let message = form.message.value;
   const room = roomInput.value;
 
-  if (room === "") return;
+  if (room === "" || null) return;
   displaySenderMessage(message);
   socket.emit("sendMessage", message, room);
 
