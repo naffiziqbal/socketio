@@ -1,4 +1,4 @@
-import { io } from "socket.io-client";
+import { io } from "./_snowpack/pkg/socket.io-client.js";
 
 // const senderContent = document.querySelector(".senderMessage");
 const viewerContent = document.querySelector(".viewerMessage");
