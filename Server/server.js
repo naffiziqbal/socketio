@@ -1,15 +1,22 @@
-const express = require('express')
-const PORT = process.env.PORT || 3000
-const app = express()
-const http = require('http')
+const express = require("express");
+const socketIo = require("socket.io");
+const http = require("http");
+const cors = require("cors");
 
-
-
-const io = require("socket.io")(PORT, {
+const app = express();
+const server = http.createServer(app);
+const io = socketIo(server, {
   cors: {
-    origin: ["http://localhost:8080"],
+    origin: "*",
   },
 });
+
+app.use(cors());
+
+app.get("/", (req, res) => {
+  res.send("server is online");
+});
+
 
 io.on("connection", (socket) => {
   console.log(socket.id);
@@ -25,9 +32,9 @@ io.on("connection", (socket) => {
   });
 });
 
-const server = http.createServer((req,res)=>{
-    res.writeHead(200, {'Content-Type' : 'text/plain'})
-    res.end("Online")
-})
-server.listen(PORT, ()=> console.log(' Server is Runnign'))
-module.exports=app
+const PORT = process.env.PORT || 3000;
+
+server.listen(PORT, () => console.log("Listerning on port"));
+
+// app.res
+module.exports = app;
