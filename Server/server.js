@@ -14,21 +14,23 @@ const io = socketIo(server, {
 app.use(cors());
 
 app.get("/", (req, res) => {
-  res.send("server is online");
+  res.send("Server is online");
 });
 
-
 io.on("connection", (socket) => {
+  console.log("User Connected");
   console.log(socket.id);
   socket.on("sendMessage", (message, room) => {
     console.log(room, " room");
-    if (room === "") {
-      socket.broadcast.emit("reciveMessage", message);
+    socket.join(room)
+    if (room === "" || null) {
+      return;
     } else {
       socket.to(room).emit("reciveMessage", message);
     }
-
-    console.log(message);
+  });
+  socket.on("disconnect", () => {
+    console.log("user disconnected");
   });
 });
 
@@ -37,4 +39,4 @@ const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => console.log("Listerning on port"));
 
 // app.res
-module.exports = app;
+module.export = app;
