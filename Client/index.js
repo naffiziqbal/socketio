@@ -3,6 +3,8 @@ import { io } from "socket.io-client";
 const mainContent = document.querySelector(".mainMessageBody");
 const form = document.getElementById("form");
 const roomInput = document.getElementById("roomInput");
+console.log(form.roomName.value)
+
 
 //?  URL
 const production = "https://chat-app-n7go.onrender.com/";
@@ -13,7 +15,7 @@ const socket = io(local);
 
 //? Connected Socket Profile Info
 socket.on("connect", () => {
-  displayProfileInfo(`Youre Connected with id : ${socket.id}`);
+  displayProfileInfo(`You're Connected with id : ${roomInput.value}`);
 });
 
 //? Recive Message
@@ -52,10 +54,10 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   let message = form.message.value;
   const room = roomInput.value;
-
   if (room === "" || null) return;
   displaySenderMessage(message);
   socket.emit("sendMessage", message, room);
 
   form.message.value = "";
 });
+
