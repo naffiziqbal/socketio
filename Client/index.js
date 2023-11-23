@@ -3,19 +3,18 @@ import { io } from "socket.io-client";
 const mainContent = document.querySelector(".mainMessageBody");
 const form = document.getElementById("form");
 const roomInput = document.getElementById("roomInput");
-console.log(form.roomName.value)
-
+console.log(form.roomName.value);
 
 //?  URL
 const production = "https://chat-app-n7go.onrender.com/";
 const local = "http://localhost:3000";
 
 //? Connecting Socket With Backend
-const socket = io(local);
+const socket = io(production);
 
 //? Connected Socket Profile Info
 socket.on("connect", () => {
-  displayProfileInfo(`You're Connected with id : ${roomInput.value}`);
+  displayProfileInfo(`You're Connected with id : ${socket.id}`);
 });
 
 //? Recive Message
@@ -54,10 +53,17 @@ form.addEventListener("submit", (e) => {
   e.preventDefault();
   let message = form.message.value;
   const room = roomInput.value;
-  if (room === "" || null) return;
+  console.log(room)
+  // if (message === "" || room === "") return;
   displaySenderMessage(message);
   socket.emit("sendMessage", message, room);
 
   form.message.value = "";
 });
 
+// document.getElementById("roomBtn").addEventListener("click", (e) => {
+//   e.preventDefault();
+//   const room = roomInput.value;
+//   socket.emit("sending-room", room);
+//   console.log(room, 'room');
+// });

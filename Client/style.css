@@ -4,27 +4,28 @@
 }
 body {
   max-width: 1140px;
-  height: 100vh;
+  height: 100%;
   width: 90%;
   margin: 0 auto;
   background: #b8b6b6;
   overflow: hidden;
-  margin: 0 auto;
+  display: flex;
+  /* justify-content: space-between; */
+  flex-direction: column;
 }
 .mainMessageBody {
-  height: 60vh;
-  border: 1px solid;
   border-radius: 0.6rem;
-  display: flex;
-  flex-direction: column;
-  padding: 2rem;
+  display: block;
+  padding: .3rem 2rem;
   position: relative;
   overflow-y: auto;
+  min-height: 70vh;
+  max-height: 75vh;
+
 }
 .inputs {
   max-width: 100%;
   width: 100dvw;
-  height: 30vh;
   overflow: hidden;
 }
 

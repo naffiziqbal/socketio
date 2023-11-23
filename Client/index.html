@@ -12,10 +12,10 @@
 </head>
 
 <body style="font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif">
-    <h1>Your Goribana Inbox</h1>
 
     <!-- ? Message Body-->
     <section>
+        <h1>Your Goribana Inbox</h1>
         <div class="profileInfo"></div>
         <div class="mainMessageBody">
 
@@ -36,9 +36,9 @@
         <form id="form">
             <div>
                 <div class="messageContainer">
-                        <label for="sendMessage" class="messageBox">
-                                <textarea name="message" type="text" placeholder="your message"></textarea>
-                        </label>
+                    <label for="sendMessage" class="messageBox">
+                        <textarea name="message" type="text" placeholder="your message"></textarea>
+                    </label>
                     <div>
                         <button class="" type="submit">
                             <span class="material-symbols-outlined">
@@ -49,9 +49,12 @@
                 </div>
             </div>
 
-            <label for="text">
-                <input id="roomInput" name="roomName" type="text" placeholder="your partner's Room ">
-            </label>
+            <div>
+                <label for="text">
+                    <input id="roomInput" name="roomName" type="text" placeholder="your partner's Room ">
+                </label>
+                <button class="btn" id="roomBtn">Join</button>
+            </div>
         </form>
     </section>
 
